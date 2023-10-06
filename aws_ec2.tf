@@ -20,3 +20,16 @@ resource "aws_instance" "nexus-server" {
     Name = "nexus-server"
   }
 }
+
+######################################################
+# APPLICATION: ENCODING
+######################################################
+resource "aws_instance" "encoding-server-1" {
+  ami           = "ami-0329d3839379bfd15"
+  instance_type = "t4g.small"
+  subnet_id     = aws_subnet.encoding_app_subnet.id
+
+  tags = {
+    Name = "encoding-server-1"
+  }
+}
