@@ -43,3 +43,22 @@ resource "aws_subnet" "encoding_app_subnet" {
     Name = "encoding_app_subnet"
   }
 }
+
+####################################################################
+# INTERNET GATEWAYS
+####################################################################
+resource "aws_internet_gateway" "development_vpc_gateway" {
+  vpc_id = aws_vpc.development_vpc.id
+
+  tags = {
+    Name = "development_vpc_gateway"
+  }
+}
+
+resource "aws_internet_gateway" "encoding_vpc_gateway" {
+  vpc_id = aws_vpc.encoding_vpc.id
+
+  tags = {
+    Name = "encoding_vpc_gateway"
+  }
+}
