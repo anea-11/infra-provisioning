@@ -7,6 +7,7 @@ resource "aws_instance" "jenkins-server" {
   subnet_id              = aws_subnet.dev_utility_subnet.id
   vpc_security_group_ids = [aws_security_group.development_ssh_ingress.id]
   key_name               = "admin-key"
+  depends_on             = [aws_internet_gateway.development_vpc_gateway]
 
   tags = {
     Name = "jenkins-server"
@@ -19,6 +20,7 @@ resource "aws_instance" "nexus-server" {
   subnet_id              = aws_subnet.dev_utility_subnet.id
   vpc_security_group_ids = [aws_security_group.development_ssh_ingress.id]
   key_name               = "admin-key"
+  depends_on             = [aws_internet_gateway.development_vpc_gateway]
 
   tags = {
     Name = "nexus-server"
@@ -34,6 +36,7 @@ resource "aws_instance" "encoding-server-1" {
   subnet_id              = aws_subnet.encoding_app_subnet.id
   vpc_security_group_ids = [aws_security_group.encoding_ssh_ingress.id, aws_security_group.encoding_frontend_ingress.id]
   key_name               = "admin-key"
+  depends_on             = [aws_internet_gateway.encoding_vpc_gateway]
 
   tags = {
     Name = "encoding-server-1"
