@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "development_ssh_ingress_rule2" {
 
 resource "aws_security_group" "development_ssh_ingress" {
   name        = "development_ssh_ingress"
-  description = "Allow SSH access in development VPC"
+  description = "Allow SSH access and PING in development VPC"
   vpc_id      = aws_vpc.development_vpc.id
 }
 ######################################################################
@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "encoding_ssh_ingress_rule2" {
 
 resource "aws_security_group" "encoding_ssh_ingress" {
   name        = "encoding_ssh_ingress"
-  description = "Allow SSH access in encoding VPC"
+  description = "Allow SSH access and PING in encoding VPC"
   vpc_id      = aws_vpc.encoding_vpc.id
 }
 ######################################################################
