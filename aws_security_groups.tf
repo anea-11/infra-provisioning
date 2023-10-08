@@ -1,65 +1,84 @@
-resource "aws_security_group_rule" "development_ssh_ingress_rule1" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.development_ssh_ingress.id
-}
-
-resource "aws_security_group_rule" "development_ssh_ingress_rule2" {
-  type              = "ingress"
-  from_port         = -1
-  to_port           = -1
-  protocol          = "icmp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.development_ssh_ingress.id
-}
-
-resource "aws_security_group" "development_ssh_ingress" {
-  name        = "development_ssh_ingress"
-  description = "Allow SSH access and PING in development VPC"
+resource "aws_security_group" "development_allow_ssh_icmp" {
+  name        = "development_allow_ssh_icmp"
+  description = "Allow SSH and ICMP inbound traffic"
   vpc_id      = aws_vpc.development_vpc.id
+
+  ingress {
+    description = "Inbound SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Inbound ICMP"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "development_allow_ssh_icmp"
+  }
 }
 ######################################################################
 
-resource "aws_security_group_rule" "encoding_ssh_ingress_rule1" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.encoding_ssh_ingress.id
-}
-
-resource "aws_security_group_rule" "encoding_ssh_ingress_rule2" {
-  type              = "ingress"
-  from_port         = -1
-  to_port           = -1
-  protocol          = "icmp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.encoding_ssh_ingress.id
-}
-
-resource "aws_security_group" "encoding_ssh_ingress" {
-  name        = "encoding_ssh_ingress"
-  description = "Allow SSH access and PING in encoding VPC"
+resource "aws_security_group" "encoding_allow_ssh_icmp" {
+  name        = "encoding_allow_ssh_icmp"
+  description = "Allow SSH and ICMP inbound traffic"
   vpc_id      = aws_vpc.encoding_vpc.id
-}
-######################################################################
 
-resource "aws_security_group_rule" "encoding_frontend_ingress_rule" {
-  type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.encoding_frontend_ingress.id
+  ingress {
+    description = "Inbound SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Inbound ICMP"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "encoding_allow_ssh_icmp"
+  }
 }
 
 resource "aws_security_group" "encoding_frontend_ingress" {
   name        = "encoding_frontend_ingress"
-  description = "Access encoding app frontend"
+  description = "Encoding frontend ingress"
   vpc_id      = aws_vpc.encoding_vpc.id
-}
 
+  ingress {
+    description = "Encoding frontend"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "encoding_frontend_ingress"
+  }
+}
