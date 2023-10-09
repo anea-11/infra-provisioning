@@ -30,6 +30,24 @@ resource "aws_security_group" "development_allow_ssh_icmp" {
     Name = "development_allow_ssh_icmp"
   }
 }
+
+resource "aws_security_group" "development_jenkins_ingress" {
+  name        = "development_jenkins_ingress"
+  description = "Development jenkins ingress"
+  vpc_id      = aws_vpc.development_vpc.id
+
+  ingress {
+    description = "Jenkins"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "development_jenkins_ingress"
+  }
+}
 ######################################################################
 
 resource "aws_security_group" "encoding_allow_ssh_icmp" {

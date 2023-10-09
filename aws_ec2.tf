@@ -5,7 +5,7 @@ resource "aws_instance" "jenkins-server" {
   ami                    = "ami-0329d3839379bfd15"
   instance_type          = "t4g.small"
   subnet_id              = aws_subnet.dev_utility_subnet.id
-  vpc_security_group_ids = [aws_security_group.development_allow_ssh_icmp.id]
+  vpc_security_group_ids = [aws_security_group.development_allow_ssh_icmp.id, aws_security_group.development_jenkins_ingress.id]
   key_name               = "admin-ssh-key"
   depends_on             = [aws_internet_gateway.development_vpc_gateway]
 
