@@ -15,8 +15,8 @@ resource "aws_instance" "jenkins-server" {
 }
 
 resource "aws_instance" "nexus-server" {
-  ami                    = "ami-0329d3839379bfd15"
-  instance_type          = "t4g.medium"
+  ami                    = "ami-04e601abe3e1a910f"
+  instance_type          = "t3.medium"
   subnet_id              = aws_subnet.dev_utility_subnet.id
   vpc_security_group_ids = [aws_security_group.development_allow_ssh_icmp.id]
   key_name               = "admin-ssh-key"
