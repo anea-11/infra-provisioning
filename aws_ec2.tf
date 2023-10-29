@@ -9,6 +9,10 @@ resource "aws_instance" "jenkins-server" {
   key_name               = "admin-ssh-key"
   depends_on             = [aws_internet_gateway.development_vpc_gateway]
 
+  root_block_device {
+    volume_size = 16
+  }
+
   tags = {
     Name = "jenkins-server"
   }
