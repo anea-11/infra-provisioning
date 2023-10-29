@@ -1,4 +1,9 @@
-# infra-provisioning
+# Introduction
+
+This project containes code for provisioning infrastructure for building, storing artifacts and deploying 
+"encoding" and "google-online-boutique" projects. The entire infratructure is on aws.
+
+# EC2 ssh key pairs
 
 Key pairs for ssh access to EC2 instances must be created either through aws cli or in web ui.
 AWS cli command:    aws ec2 create-key-pair --key-name <key-pair-name>
