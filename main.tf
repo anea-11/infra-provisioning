@@ -16,3 +16,7 @@ provider "aws" {
 module "aws_CICD" {
   source = "./modules/aws_CICD"
 }
+
+module "aws_encoding_app" {
+  source = "./modules/aws_encoding_app"
+}
