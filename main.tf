@@ -13,3 +13,6 @@ provider "aws" {
   region = "eu-central-1"
 }
 
+module "aws_CICD" {
+  source = "./modules/aws_CICD"
+}
