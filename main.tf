@@ -10,7 +10,7 @@ terraform {
 # env: AWS_ACCESS_KEY_ID
 # env: AWS_SECRET_ACCESS_KEY
 provider "aws" {
-  region = "eu-central-1"
+  region = var.aws_region
 }
 
 module "aws_CICD" {
