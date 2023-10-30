@@ -1,6 +1,6 @@
 # Introduction
 
-This project containes code for provisioning infrastructure for building, storing artifacts and deploying 
+This project contains code for provisioning infrastructure for building, storing artifacts and deploying
 "encoding" and "google-online-boutique" projects. The entire infratructure is on aws.
 
 # EC2 ssh key pairs
