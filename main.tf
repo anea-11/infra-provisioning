@@ -13,7 +13,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "aws_CICD" {
+module "CICD_resources" {
   source = "./modules/aws_CICD"
 
   vpc_cidr_block = var.cicd_vpc_cidr_block
@@ -21,10 +21,19 @@ module "aws_CICD" {
   az             = var.cicd_az
 }
 
-module "aws_encoding_app" {
+module "encoding_app_resources" {
   source = "./modules/aws_encoding_app"
 
   vpc_cidr_block = var.encoding_app_vpc_cidr_block
   vpc_name       = var.encoding_app_vpc_name
   az             = var.encoding_app_az
+}
+
+module "google_online_boutique_resources" {
+  source = "./modules/aws_google_online_boutique"
+
+  vpc_cidr_block      = var.google_online_boutique_vpc_cidr_block
+  vpc_name            = var.google_online_boutique_vpc_name
+  vpc_private_subnets = var.google_online_boutique_vpc_private_subnets
+  vpc_public_subnets  = var.google_online_boutique_vpc_public_subnets
 }
