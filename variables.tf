@@ -63,3 +63,9 @@ variable "google_online_boutique_vpc_public_subnets" {
   type        = list(string)
   default     = ["172.18.4.0/24", "172.18.5.0/24", "172.18.6.0/24"]
 }
+
+variable "google_online_boutique_eks_cluster_name" {
+  description = "EKS cluster name for google_online_boutique app"
+  type        = string
+  default     = "online_boutique_cluster"
+}

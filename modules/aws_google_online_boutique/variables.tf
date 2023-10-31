@@ -17,3 +17,8 @@ variable vpc_public_subnets  {
     description = "Public subnets for the VPC in which google_online_boutigue app resources will be deployed"
     type        = list(string)
 }
+
+variable eks_cluster_name  {
+    description = "EKS cluster name"
+    type        = string
+}

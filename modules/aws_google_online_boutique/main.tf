@@ -24,17 +24,39 @@ module "google_online_boutique_vpc" {
   enable_dns_hostnames  = true
 
   tags = {
-    "kubernetes.io/cluster/google_online_boutique_eks_cluster" = "shared" 
+    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared" 
   }
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/google_online_boutique_eks_cluster" = "shared" 
+    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared" 
     "kubernetes.io/role/elb" = 1
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/google_online_boutique_eks_cluster" = "shared"
+    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb" = 1
   }
 }
+
+module "google_online_boutique_eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "19.17.4"
+
+  cluster_name = "${var.eks_cluster_name}"
+  cluster_version = "1.27"
+
+  subnet_ids = module.google_online_boutique_vpc.private_subnets
+  vpc_id = module.google_online_boutique_vpc.vpc_id
+
+  eks_managed_node_groups = {
+    online_boutique = {
+        min_size = 1
+        max_size = 3
+        desired_size = 3
+
+        instance_types = ["t4g.small"]
+    }
+  }
+}
+
 

@@ -36,4 +36,6 @@ module "google_online_boutique_resources" {
   vpc_name            = var.google_online_boutique_vpc_name
   vpc_private_subnets = var.google_online_boutique_vpc_private_subnets
   vpc_public_subnets  = var.google_online_boutique_vpc_public_subnets
+
+  eks_cluster_name = var.google_online_boutique_eks_cluster_name
 }
