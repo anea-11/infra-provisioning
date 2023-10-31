@@ -17,7 +17,7 @@ variable "cicd_vpc_name" {
 }
 
 variable "cicd_az" {
-  description = "Availability zone in which the resources will be deployed"
+  description = "Availability zone in which CICD resources will be deployed"
   type        = string
   default     = "eu-central-1c"
 }
@@ -26,4 +26,16 @@ variable "encoding_app_vpc_cidr_block" {
   description = "CIDR block for the VPC in which encoding-app resources will be deployed"
   type        = string
   default     = "172.17.0.0/16"
+}
+
+variable "encoding_app_vpc_name" {
+  description = "Name for the VPC in which encoding-app resources will be deployed"
+  type        = string
+  default     = "encoding_app_vpc"
+}
+
+variable "encoding_app_az" {
+  description = "Availability zone in which encoding-app resources will be deployed"
+  type        = string
+  default     = "eu-central-1a"
 }

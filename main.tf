@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "aws_CICD" {
-  source         = "./modules/aws_CICD"
+  source = "./modules/aws_CICD"
 
   vpc_cidr_block = var.cicd_vpc_cidr_block
   vpc_name       = var.cicd_vpc_name
@@ -22,6 +22,9 @@ module "aws_CICD" {
 }
 
 module "aws_encoding_app" {
-  source         = "./modules/aws_encoding_app"
+  source = "./modules/aws_encoding_app"
+
   vpc_cidr_block = var.encoding_app_vpc_cidr_block
+  vpc_name       = var.encoding_app_vpc_name
+  az             = var.encoding_app_az
 }
