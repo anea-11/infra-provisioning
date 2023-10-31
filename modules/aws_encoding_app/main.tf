@@ -1,5 +1,5 @@
 resource "aws_vpc" "encoding_vpc" {
-  cidr_block       = "172.17.0.0/16"
+  cidr_block       = var.vpc_cidr_block
   instance_tenancy = "default"
 
   tags = {
