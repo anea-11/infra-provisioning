@@ -1,0 +1,24 @@
+aws_region = "eu-west-1"
+
+cicd_vpc_cidr_block               = "172.16.0.0/16"
+cicd_vpc_name                     = "cicd_vpc"
+cicd_az                           = "eu-west-1c"
+cicd_jenkins_server_ami           = "ami-07928cae293fb5376"
+cicd_jenkins_server_instance_type = "t4g.small" # arm 
+cicd_nexus_server_ami             = "ami-06ed60ed1369448bd"
+cicd_nexus_server_instance_type   = "t3.medium" # x86
+
+encoding_app_vpc_cidr_block       = "172.17.0.0/16"
+encoding_app_vpc_name             = "encoding_app_vpc"
+encoding_app_az                   = "eu-west-1c"
+encoding_app_server_ami           = "ami-07928cae293fb5376"
+encoding_app_server_instance_type = "t4g.small" # arm 
+
+google_online_boutique_vpc_name            = "google_online_boutique_vpc"
+google_online_boutique_vpc_cidr_block      = "172.18.0.0/16"
+google_online_boutique_vpc_private_subnets = ["172.18.1.0/24", "172.18.2.0/24", "172.18.3.0/24"]
+google_online_boutique_vpc_public_subnets  = ["172.18.4.0/24", "172.18.5.0/24", "172.18.6.0/24"]
+google_online_boutique_eks_cluster_name    = "online_boutique_cluster"
+
+# terraform plan -var-file=config-eu-central-1 -state=eu-west-1.tfstate
+# terraform apply -var-file=config-eu-central-1 -state=eu-west-1.tfstate
