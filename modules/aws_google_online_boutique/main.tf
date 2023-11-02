@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.19.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "2.23.0"
+    }
   }
 }
 
@@ -43,7 +47,7 @@ module "google_online_boutique_eks" {
   version = "19.17.4"
 
   cluster_name = "${var.eks_cluster_name}"
-  cluster_version = "1.27"
+  cluster_version = "1.28"
 
   subnet_ids = module.google_online_boutique_vpc.private_subnets
   vpc_id = module.google_online_boutique_vpc.vpc_id
@@ -55,8 +59,36 @@ module "google_online_boutique_eks" {
         desired_size = 3
 
         instance_types = ["t4g.small"]
+        ami_type       = "AL2_ARM_64"
     }
   }
+
+  cluster_endpoint_public_access = true
+
+  manage_aws_auth_configmap = true
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::474024458802:user/admin"
+      username = "admin"
+      groups   : [
+        "system:nodes", "system:masters"
+      ]
+    }
+  ]
 }
 
+data "aws_eks_cluster" "default" {
+  name = module.google_online_boutique_eks.cluster_name
+}
+
+data "aws_eks_cluster_auth" "default" {
+  name = module.google_online_boutique_eks.cluster_name
+}
+
+# Authenticate with the cluster to be able to update aws-auth configmap with tf
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.default.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.default.token
+}
 
