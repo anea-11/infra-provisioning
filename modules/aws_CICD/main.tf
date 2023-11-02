@@ -85,8 +85,8 @@ resource "aws_security_group" "cicd_nexus_ingress" {
 }
 
 resource "aws_instance" "jenkins-server" {
-  ami                    = "ami-0329d3839379bfd15"
-  instance_type          = "t4g.small"
+  ami                    = var.jenkins_server_ami
+  instance_type          = var.jenkins_server_instance_type
   subnet_id              = module.cicd_public_network.subnet_id
   vpc_security_group_ids = [aws_security_group.cicd_allow_ssh_icmp.id, aws_security_group.cicd_jenkins_ingress.id]
   key_name               = "admin-ssh-key"
@@ -102,8 +102,8 @@ resource "aws_instance" "jenkins-server" {
 }
 
 resource "aws_instance" "nexus-server" {
-  ami                    = "ami-04e601abe3e1a910f"
-  instance_type          = "t3.medium"
+  ami                    = var.nexus_server_ami
+  instance_type          = var.nexus_server_instance_type
   subnet_id              = module.cicd_public_network.subnet_id
   vpc_security_group_ids = [aws_security_group.cicd_allow_ssh_icmp.id, aws_security_group.cicd_nexus_ingress.id]
   key_name               = "admin-ssh-key"

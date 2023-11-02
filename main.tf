@@ -28,6 +28,11 @@ module "CICD_resources" {
   vpc_cidr_block = var.cicd_vpc_cidr_block
   vpc_name       = var.cicd_vpc_name
   az             = var.cicd_az
+
+  jenkins_server_ami           = var.cicd_jenkins_server_ami
+  jenkins_server_instance_type = var.cicd_jenkins_server_instance_type
+  nexus_server_ami             = var.cicd_nexus_server_ami
+  nexus_server_instance_type   = var.cicd_nexus_server_instance_type
 }
 
 module "encoding_app_resources" {
@@ -36,6 +41,9 @@ module "encoding_app_resources" {
   vpc_cidr_block = var.encoding_app_vpc_cidr_block
   vpc_name       = var.encoding_app_vpc_name
   az             = var.encoding_app_az
+
+  encoding_server_ami           = var.encoding_app_server_ami
+  encoding_server_instance_type = var.encoding_app_server_instance_type
 }
 
 module "google_online_boutique_resources" {

@@ -66,9 +66,9 @@ resource "aws_security_group" "encoding_frontend_ingress" {
   }
 }
 
-resource "aws_instance" "encoding-server-1" {
-  ami                    = "ami-0329d3839379bfd15"
-  instance_type          = "t4g.small"
+resource "aws_instance" "encoding-server" {
+  ami                    = var.encoding_server_ami
+  instance_type          = var.encoding_server_instance_type
   subnet_id              = module.encoding_public_network.subnet_id
   vpc_security_group_ids = [aws_security_group.encoding_allow_ssh_icmp.id, aws_security_group.encoding_frontend_ingress.id]
   key_name               = "admin-ssh-key"

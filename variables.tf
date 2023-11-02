@@ -18,6 +18,26 @@ variable "cicd_az" {
   type        = string
 }
 
+variable "cicd_jenkins_server_ami" {
+  description = "Jenkins server AMI"
+  type        = string
+}
+
+variable "cicd_nexus_server_ami" {
+  description = "Nexus server AMI"
+  type        = string
+}
+
+variable "cicd_nexus_server_instance_type" {
+  description = "Nexus server instance type"
+  type        = string
+}
+
+variable "cicd_jenkins_server_instance_type" {
+  description = "Jenkins server instance type"
+  type        = string
+}
+
 variable "encoding_app_vpc_cidr_block" {
   description = "CIDR block for the VPC in which encoding-app resources will be deployed"
   type        = string
@@ -30,6 +50,16 @@ variable "encoding_app_vpc_name" {
 
 variable "encoding_app_az" {
   description = "Availability zone in which encoding-app resources will be deployed"
+  type        = string
+}
+
+variable "encoding_app_server_ami" {
+  description = "Encoding server ami"
+  type        = string
+}
+
+variable "encoding_app_server_instance_type" {
+  description = "Encoding server instance type"
   type        = string
 }
 
