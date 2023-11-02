@@ -16,7 +16,7 @@ befor creating EC2 instances - this "master" key is associated with an EC2 insta
 Terraform state files are stored in S3 bucket "ttt-tfstates" in following locations:
 
 Vars config file                S3 tfstate path
----------------------------------------------------------------
+
 config-eu-central-1             eu-central-1/terraform.tftsate
 config-eu-west-1                eu-west-1/terraform.tftsate
 
@@ -53,3 +53,13 @@ To work with "eu-central-1" resources, use -var-file=config-eu-central-1 with te
 Important: always run "terraform init" after making changes to the backend.key value!
 
 State files in S3 bucket are versioned, so that's how you can recover if a state file somehow gets messed up.
+
+# Connect kubectl to EKS cluster
+
+Prerequisites: AWS CLI, kubectl and aws-iam-authenticator installed
+
+aws eks update-kubeconfig --name <cluster_name> --region <cluster_region>
+
+~/.kube/config will be updated after running this command. This connects kubectl to the cluster.
+
+To test: kubectl get node -> should list all cluster nodes

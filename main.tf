@@ -10,8 +10,8 @@ terraform {
     bucket = "ttt-tfstates"
     region = "eu-central-1" # don't modify this
 
-    # Uncomment to select region-specific state file
-    # key = "eu-west-1/terraform.tfstate"
+    # Uncomment and run "terraform init" to select region-specific state file
+    key = "eu-west-1/terraform.tfstate"
     # key    = "eu-central-1/terraform.tfstate"
   }
 }
