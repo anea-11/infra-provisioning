@@ -79,7 +79,7 @@ module "google_online_boutique_eks" {
 ########################################################################################################
 # IMPORTANT: following code block will give an error when EKS cluster is not yet initialized!
 # In other words, it throws an error if terraform apply needs to create the EKS cluster.
-# Once the cluster already exists, the code works fine and updates the aws-auth configmap in the cluser.
+# Once the cluster already exists, the code works fine and athenticates with the cluster so that aws-auth configmap can be updated.
 # Workaround: comment-out the problematic code -> run terraform apply -> uncomment the problematic code-> run terraform apply again
 
 data "aws_eks_cluster" "default" {
