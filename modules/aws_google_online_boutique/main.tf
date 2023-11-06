@@ -58,8 +58,7 @@ module "google_online_boutique_eks" {
         max_size = 3
         desired_size = 3
 
-        instance_types = ["t4g.small"]
-        ami_type       = "AL2_ARM_64"
+        instance_types = ["t3.small"]
     }
   }
 
@@ -97,5 +96,6 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
   token                  = data.aws_eks_cluster_auth.default.token
 }
+
 # end of code that gives errors when EKS cluster is not yet initialized
 ########################################################################################################
