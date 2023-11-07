@@ -99,3 +99,34 @@ provider "kubernetes" {
 
 # end of code that gives errors when EKS cluster is not yet initialized
 ########################################################################################################
+
+module "google_online_boutique_efs" {
+  source  = "terraform-aws-modules/efs/aws"
+  version = "1.3.1"
+
+  name = "efs-name"
+
+  create_security_group = true
+  security_group_vpc_id = module.google_online_boutique_vpc.vpc_id
+  security_group_rules =  {
+    ingress = {
+      type        = "ingress"
+      from_port   = 2049
+      to_port     = 2049
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  mount_targets = {
+    t1 = {
+      subnet_id = module.google_online_boutique_vpc.private_subnets[0]
+    },
+    t2 = {
+      subnet_id = module.google_online_boutique_vpc.private_subnets[1]
+    },
+    t3 = {
+      subnet_id = module.google_online_boutique_vpc.private_subnets[2]
+    }
+  }
+}
