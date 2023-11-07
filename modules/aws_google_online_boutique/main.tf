@@ -58,7 +58,7 @@ module "google_online_boutique_eks" {
         max_size = 3
         desired_size = 3
 
-        instance_types = ["t3.small"]
+        instance_types = ["t3.large"]
     }
   }
 
