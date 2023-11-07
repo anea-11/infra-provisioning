@@ -18,7 +18,7 @@ google_online_boutique_vpc_name            = "google_online_boutique_vpc"
 google_online_boutique_vpc_cidr_block      = "172.18.0.0/16"
 google_online_boutique_vpc_private_subnets = ["172.18.1.0/24", "172.18.2.0/24", "172.18.3.0/24"]
 google_online_boutique_vpc_public_subnets  = ["172.18.4.0/24", "172.18.5.0/24", "172.18.6.0/24"]
-google_online_boutique_eks_cluster_name    = "online_boutique_cluster"
+google_online_boutique_eks_cluster_name    = "online-boutique-cluster"
 
 # terraform plan -var-file=config-eu-central-1 -state=eu-west-1.tfstate
 # terraform apply -var-file=config-eu-central-1 -state=eu-west-1.tfstate
