@@ -26,6 +26,17 @@ Example steps for deploying to `eu-west-1` region:
 3. run `terraform init` ; this step is very important, as it configures terraform to work with correct state file selected in step 2!
 4. run `terraform apply -var-file=configs/config-eu-west-1`
 
+# How to connect kubectl to EKS cluster
+
+Prerequisites: `AWS CLI`, `kubectl` and `aws-iam-authenticator` installed.  
+```
+aws eks update-kubeconfig --name <cluster_name> --region <cluster_region>
+```
+
+`~/.kube/config` will be updated after running this command. This connects kubectl to the cluster.  
+To test: `kubectl get node` -> should list all cluster nodes
+
+
 # Important information
 
 ### Working with EC2 ssh key pairs
@@ -69,13 +80,3 @@ Set `backend.key` to "eu-west-1/terraform.tfstate":
 
 Important: `backend.region` always remains `eu-central-1` because that's where the bucket itself is deployed!  
 Important: always run `terraform init` after making changes to the `backend.key` value!  
-
-### Connect kubectl to EKS cluster
-
-Prerequisites: `AWS CLI`, `kubectl` and `aws-iam-authenticator` installed.  
-```
-aws eks update-kubeconfig --name <cluster_name> --region <cluster_region>
-```
-
-`~/.kube/config` will be updated after running this command. This connects kubectl to the cluster.  
-To test: `kubectl get node` -> should list all cluster nodes
