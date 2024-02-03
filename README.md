@@ -1,3 +1,10 @@
+# Overview
+
+This terraform repository is used to provision infrastructure for portfolio projects on AWS.
+Infrastructure is provisioned through modules **CICD_resources**, **encoding_app_resources** and **google_online_boutique_resources**.
+
+![Resources](/docs/images/resources.png)
+
 # Introduction
 
 This project contains code for provisioning infrastructure for building, storing artifacts and deploying
