@@ -21,7 +21,7 @@ terraform {
 provider "aws" {
   region = var.aws_region
 }
-/*
+
 module "CICD_resources" {
   source = "./modules/aws_CICD"
 
@@ -45,7 +45,7 @@ module "encoding_app_resources" {
   encoding_server_ami           = var.encoding_app_server_ami
   encoding_server_instance_type = var.encoding_app_server_instance_type
 }
-*/
+
 module "google_online_boutique_resources" {
   source = "./modules/aws_google_online_boutique"
 
