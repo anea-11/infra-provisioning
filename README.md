@@ -1,7 +1,17 @@
 # Overview
 
 This terraform repository is used to provision infrastructure for portfolio projects on AWS.
-Infrastructure is provisioned through modules **CICD_resources**, **encoding_app_resources** and **google_online_boutique_resources**.
+
+Infrastructure is provisioned through modules (see main.tf):
+* **CICD_resources**
+1. Jenkins server
+2. Nexus server
+* **encoding_app_resources**
+1. Encoding app server
+* **google_online_boutique_resources**
+1. EKS cluster
+
+# Resources diagram
 
 ![Resources](/docs/images/resources.png)
 
